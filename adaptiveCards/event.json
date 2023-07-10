@@ -1,0 +1,38 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.4",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "My Event Example",
+      "size": "Large",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "type": "Input.Text",
+      "id": "name",
+      "placeholder": "Enter your name",
+      "label": "Name"
+    },
+    {
+      "type": "Input.Text",
+      "id": "email",
+      "placeholder": "Enter your email",
+      "label": "Email"
+    },
+    {
+      "type": "Input.Number",
+      "id": "age",
+      "placeholder": "Enter your age",
+      "label": "Age"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Submit"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import {
 import rawWelcomeCard from "./adaptiveCards/welcome.json";
 import eventCard from "./adaptiveCards/event.json";
 import rawLearnCard from "./adaptiveCards/learn.json";
+import eventSubmit from "./adaptiveCards/eventSubmit.json";
 import { AdaptiveCards } from "@microsoft/adaptivecards-tools";
 
 export interface DataInterface {
@@ -83,7 +84,19 @@ export class TeamsBot extends TeamsActivityHandler {
     context: TurnContext,
     invokeValue: AdaptiveCardInvokeValue
   ): Promise<AdaptiveCardInvokeResponse> {
+    const text = context.activity.text
+    console.log({ action: invokeValue.action.verb, data: invokeValue.action.data, replyToId: context.activity.replyToId })
     // The verb "userlike" is sent from the Adaptive Card defined in adaptiveCards/learn.json
+    if (invokeValue.action.verb === "eventSubmit") {
+      // this.likeCountObj.likeCount++;
+      const card = AdaptiveCards.declare<DataInterface>(eventSubmit).render();
+      await context.updateActivity({
+        type: "message",
+        id: context.activity.replyToId,
+        attachments: [CardFactory.adaptiveCard(card)],
+      });
+      return { statusCode: 200, type: undefined, value: undefined };
+    }
     if (invokeValue.action.verb === "userlike") {
       this.likeCountObj.likeCount++;
       const card = AdaptiveCards.declare<DataInterface>(rawLearnCard).render(this.likeCountObj);

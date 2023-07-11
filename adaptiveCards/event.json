@@ -66,7 +66,7 @@
     },
     {
       "type": "Input.Text",
-      "id": "image",
+      "id": "imageData",
       "placeholder": "Enter image URL"
     }
   ],

@@ -9,6 +9,7 @@ import rawWelcomeCard from "./adaptiveCards/welcome.json";
 import eventCard from "./adaptiveCards/event.json";
 import rawLearnCard from "./adaptiveCards/learn.json";
 import eventSubmit from "./adaptiveCards/eventSubmit.json";
+import eventList from "./adaptiveCards/eventList.json";
 import { AdaptiveCards } from "@microsoft/adaptivecards-tools";
 import axios from "axios";
 import { ENV } from "./Env";
@@ -45,6 +46,14 @@ export class TeamsBot extends TeamsActivityHandler {
         }
         case "event": {
           const card = AdaptiveCards.declareWithoutData(eventCard).render();
+          await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
+          break;
+        }
+
+        case "getevents": {
+          const { data } = await axios.get("http://localhost:1414/getEvents");
+          console.log({ data })
+          const card = AdaptiveCards.declare(eventList).render({ data });
           await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
           break;
         }

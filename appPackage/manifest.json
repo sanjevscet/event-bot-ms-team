@@ -15,8 +15,8 @@
     "outline": "outline.png"
   },
   "name": {
-    "short": "MyBot-${{TEAMSFX_ENV}}",
-    "full": "full name for MyBot"
+    "short": "MyBotA-${{TEAMSFX_ENV}}",
+    "full": "full name for MyBotA"
   },
   "description": {
     "short": "short description for MyBot",

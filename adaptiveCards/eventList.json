@@ -38,26 +38,39 @@
           "columns": [
             {
               "type": "Column",
+              "width": "auto",
               "items": [
                 {
                   "type": "TextBlock",
                   "text": "${eventName}",
+                  "weight": "Bolder",
                   "wrap": true
                 }
-              ],
-              "width": "auto"
+              ]
             },
             {
               "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "${organiser}",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
               "items": [
                 {
                   "type": "Image",
                   "url": "${imageData}",
                   "size": "Small",
-                  "height": "50px"
+                  "height": "50px",
+                  "horizontalAlignment": "Right"
                 }
-              ],
-              "width": "auto"
+              ]
             }
           ]
         }

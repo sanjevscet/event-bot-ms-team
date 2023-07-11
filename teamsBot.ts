@@ -41,7 +41,7 @@ export class TeamsBot extends TeamsActivityHandler {
           await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
           break;
         }
-        case "sanjeev": {
+        case "event": {
           const card = AdaptiveCards.declareWithoutData(eventCard).render();
           await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
           break;

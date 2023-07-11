@@ -5,28 +5,69 @@
   "body": [
     {
       "type": "TextBlock",
-      "text": "My Event Example Handler",
-      "size": "Large",
+      "text": "Event Details",
       "weight": "Bolder",
-      "wrap": true
+      "size": "Large"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Event Name:",
+      "weight": "Bolder"
     },
     {
       "type": "Input.Text",
-      "id": "name",
-      "placeholder": "Enter your name",
-      "label": "Name"
+      "id": "eventName",
+      "placeholder": "Enter event name"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Event Description:",
+      "weight": "Bolder"
     },
     {
       "type": "Input.Text",
-      "id": "email",
-      "placeholder": "Enter your email",
-      "label": "Email"
+      "id": "eventDesc",
+      "placeholder": "Enter event description",
+      "isMultiline": true
     },
     {
-      "type": "Input.Number",
-      "id": "age",
-      "placeholder": "Enter your age",
-      "label": "Age"
+      "type": "TextBlock",
+      "text": "Event Location:",
+      "weight": "Bolder"
+    },
+    {
+      "type": "Input.Text",
+      "id": "eventLocation",
+      "placeholder": "Enter event location"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Organizer:",
+      "weight": "Bolder"
+    },
+    {
+      "type": "Input.Text",
+      "id": "organizer",
+      "placeholder": "Enter organizer name"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Event Date:",
+      "weight": "Bolder"
+    },
+    {
+      "type": "Input.Date",
+      "id": "eventDate"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Event Image:",
+      "weight": "Bolder"
+    },
+    {
+      "type": "Input.Text",
+      "id": "image",
+      "placeholder": "Enter image URL"
     }
   ],
   "actions": [

@@ -10,6 +10,8 @@ import eventCard from "./adaptiveCards/event.json";
 import rawLearnCard from "./adaptiveCards/learn.json";
 import eventSubmit from "./adaptiveCards/eventSubmit.json";
 import { AdaptiveCards } from "@microsoft/adaptivecards-tools";
+import axios from "axios";
+import { ENV } from "./Env";
 
 export interface DataInterface {
   likeCount: number;
@@ -89,6 +91,13 @@ export class TeamsBot extends TeamsActivityHandler {
     // The verb "userlike" is sent from the Adaptive Card defined in adaptiveCards/learn.json
     if (invokeValue.action.verb === "eventSubmit") {
       // this.likeCountObj.likeCount++;
+      const url = ENV.API_URL + '/saveEvent';
+      const payload = invokeValue.action.data
+      const { data } = await axios.post(url, payload);
+      console.log({ url, payload, data });
+      const { msg } = data;
+      eventSubmit.body[1].text = msg;
+
       const card = AdaptiveCards.declare<DataInterface>(eventSubmit).render();
       await context.updateActivity({
         type: "message",

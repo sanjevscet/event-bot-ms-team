@@ -139,7 +139,7 @@ export class TeamsBot extends TeamsActivityHandler {
         id: context.activity.replyToId,
         attachments: [CardFactory.adaptiveCard(card)],
       });
-      return { statusCode: 200, type: undefined, value: undefined };
+      // return { statusCode: 200, type: undefined, value: undefined };
     }
     if (invokeValue.action.verb === "userlike") {
       this.likeCountObj.likeCount++;

@@ -5,29 +5,10 @@
   "body": [
     {
       "type": "TextBlock",
-      "text": "Event List A",
-      "size": "Large",
+      "text": "Event List",
+      "size": "ExtraLarge",
       "weight": "Bolder",
       "wrap": true
-    },
-    {
-      "type": "TextBlock",
-      "text": "${appName}",
-      "isSubtle": true,
-      "color": "Accent",
-      "weight": "Bolder",
-      "size": "Small",
-      "spacing": "None"
-    },
-    {
-      "type": "TextBlock",
-      "text": "${description}",
-      "isSubtle": true,
-      "wrap": true
-    },
-    {
-      "type": "TextBlock",
-      "text": "This is a sample list:"
     },
     {
       "$data": "${data}",
@@ -38,11 +19,11 @@
           "columns": [
             {
               "type": "Column",
-              "width": "auto",
+              "width": "1",
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "${eventName}",
+                  "text": "Name",
                   "weight": "Bolder",
                   "wrap": true
                 }
@@ -50,42 +31,99 @@
             },
             {
               "type": "Column",
-              "width": "auto",
+              "width": "1",
               "items": [
                 {
                   "type": "TextBlock",
-                  "text": "${organiser}",
+                  "text": "Location",
+                  "weight": "Bolder",
                   "wrap": true
                 }
               ]
             },
             {
               "type": "Column",
-              "width": "stretch",
+              "width": "1",
               "items": [
                 {
-                  "type": "Image",
-                  "url": "${imageData}",
-                  "size": "Small",
-                  "height": "50px",
-                  "horizontalAlignment": "Right"
+                  "type": "TextBlock",
+                  "text": "Image",
+                  "weight": "Bolder",
+                  "wrap": true
                 }
               ]
             },
             {
               "type": "Column",
-              "width": "auto",
+              "width": "1",
               "items": [
                 {
-                  "type": "ActionSet",
-                  "actions": [
+                  "type": "TextBlock",
+                  "text": "",
+                  "weight": "Bolder",
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$foreach": "${data}",
+          "type": "Container",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [
                     {
-                      "type": "Action.Execute",
-                      "title": "View Details",
-                      "verb": "getEventDetails",
-                      "data": {
-                        "id": "${id}"
-                      }
+                      "type": "TextBlock",
+                      "text": "${eventName} - by ${organiser}",
+                      "wrap": true
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${eventLocation} - ${eventDate}",
+                      "wrap": true
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "${imageData}",
+                      "size": "Small",
+                      "height": "70px"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [
+                    {
+                      "type": "ActionSet",
+                      "actions": [
+                        {
+                          "type": "Action.Execute",
+                          "title": "More Info..",
+                          "verb": "getEventDetails",
+                          "data": {
+                            "id": "${id}"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }

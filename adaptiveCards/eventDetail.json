@@ -7,37 +7,87 @@
       "type": "TextBlock",
       "text": "Event Details",
       "weight": "Bolder",
-      "size": "Medium"
+      "size": "ExtraLarge"
     },
     {
-      "type": "TextBlock",
-      "text": "Event Name: ${eventName}",
-      "wrap": true
+      "type": "RichTextBlock",
+      "inlines": [
+        {
+          "type": "TextRun",
+          "text": "Name: ",
+          "weight": "Bolder"
+        },
+        {
+          "type": "TextRun",
+          "text": "${eventName}"
+        }
+      ]
     },
     {
-      "type": "TextBlock",
-      "text": "Event Description: ${eventDesc}",
-      "wrap": true
+      "type": "RichTextBlock",
+      "inlines": [
+        {
+          "type": "TextRun",
+          "text": "Description: ",
+          "weight": "Bolder"
+        },
+        {
+          "type": "TextRun",
+          "text": "${eventDesc}"
+        }
+      ]
+    },
+
+    {
+      "type": "RichTextBlock",
+      "inlines": [
+        {
+          "type": "TextRun",
+          "text": "Location: ",
+          "weight": "Bolder"
+        },
+        {
+          "type": "TextRun",
+          "text": "${eventLocation}"
+        }
+      ]
     },
     {
-      "type": "TextBlock",
-      "text": "Event Location: ${eventLocation}",
-      "wrap": true
+      "type": "RichTextBlock",
+      "inlines": [
+        {
+          "type": "TextRun",
+          "text": "Organiser: ",
+          "weight": "Bolder"
+        },
+        {
+          "type": "TextRun",
+          "text": "${organiser}"
+        }
+      ]
     },
+
     {
-      "type": "TextBlock",
-      "text": "Organiser: ${organiser}",
-      "wrap": true
+      "type": "RichTextBlock",
+      "inlines": [
+        {
+          "type": "TextRun",
+          "text": "Date: ",
+          "weight": "Bolder"
+        },
+        {
+          "type": "TextRun",
+          "text": "${eventDate}"
+        }
+      ]
     },
-    {
-      "type": "TextBlock",
-      "text": "Event Date: ${eventDate}",
-      "wrap": true
-    },
+
     {
       "type": "Image",
       "url": "${imageData}",
-      "size": "Medium"
+      "size": "large",
+      "height": "250px",
+      "horizontalAlignment": "center"
     }
   ]
 }

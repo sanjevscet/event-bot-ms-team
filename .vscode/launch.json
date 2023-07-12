@@ -55,7 +55,7 @@
             "name": "Attach to Local Service",
             "type": "node",
             "request": "attach",
-            "port": 9239,
+            "port": 9238,
             "restart": true,
             "presentation": {
                 "group": "all",

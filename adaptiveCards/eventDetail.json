@@ -1,0 +1,43 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.4",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Event Details",
+      "weight": "Bolder",
+      "size": "Medium"
+    },
+    {
+      "type": "TextBlock",
+      "text": "Event Name: ${eventName}",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "Event Description: ${eventDesc}",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "Event Location: ${eventLocation}",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "Organiser: ${organiser}",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "Event Date: ${eventDate}",
+      "wrap": true
+    },
+    {
+      "type": "Image",
+      "url": "${imageData}",
+      "size": "Medium"
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import eventCard from "./adaptiveCards/event.json";
 import rawLearnCard from "./adaptiveCards/learn.json";
 import eventSubmit from "./adaptiveCards/eventSubmit.json";
 import eventList from "./adaptiveCards/eventList.json";
+import eventDetail from "./adaptiveCards/eventDetail.json";
 import { AdaptiveCards } from "@microsoft/adaptivecards-tools";
 import axios from "axios";
 import { ENV } from "./Env";
@@ -97,6 +98,31 @@ export class TeamsBot extends TeamsActivityHandler {
   ): Promise<AdaptiveCardInvokeResponse> {
     const text = context.activity.text
     console.log({ action: invokeValue.action.verb, data: invokeValue.action.data, replyToId: context.activity.replyToId })
+    if (invokeValue.action.verb === "getEventDetails") {
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+      console.log("invokeValue", JSON.stringify(invokeValue));
+      console.log("context", JSON.stringify(context));
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      const id = invokeValue.action.data.id
+      const url = ENV.API_URL + '/getEvents/' + id;
+      const { data } = await axios.get(url);
+      console.log({ url, data });
+      // const { msg } = data;
+      // eventSubmit.body[1].text = "API called to get Events";
+
+      // const card = AdaptiveCards.declare<DataInterface>(eventSubmit).render();
+      // await context.updateActivity({
+      //   type: "message",
+      //   id: context.activity.replyToId,
+      //   attachments: [CardFactory.adaptiveCard(card)],
+      // });
+
+      const card = AdaptiveCards.declare(eventDetail).render(data);
+      await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
+
+      return { statusCode: 200, type: undefined, value: undefined };
+
+    }
     // The verb "userlike" is sent from the Adaptive Card defined in adaptiveCards/learn.json
     if (invokeValue.action.verb === "eventSubmit") {
       // this.likeCountObj.likeCount++;

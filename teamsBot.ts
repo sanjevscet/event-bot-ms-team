@@ -149,6 +149,7 @@ export class TeamsBot extends TeamsActivityHandler {
       const id = invokeValue.action.data.id
       const url = ENV.API_URL + '/getEventbyId/' + id;
       const { data } = await axios.get(url);
+      data.participants = data.participants ?? "None";
       console.log({ url, data });
       // const { msg } = data;
       // eventSubmit.body[1].text = "API called to get Events";

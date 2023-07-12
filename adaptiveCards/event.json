@@ -47,7 +47,7 @@
     },
     {
       "type": "Input.Text",
-      "id": "organizer",
+      "id": "organiser",
       "placeholder": "Enter organizer name"
     },
     {

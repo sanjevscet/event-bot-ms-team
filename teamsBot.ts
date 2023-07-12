@@ -45,6 +45,12 @@ export class TeamsBot extends TeamsActivityHandler {
           await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
           break;
         }
+        case "welcome": {
+          const card = AdaptiveCards.declareWithoutData(rawWelcomeCard).render();
+          await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
+          break;
+        }
+
         case "event": {
           const card = AdaptiveCards.declareWithoutData(eventCard).render();
           await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
@@ -52,14 +58,15 @@ export class TeamsBot extends TeamsActivityHandler {
         }
 
         case "getevents": {
-          const { data } = await axios.get("http://localhost:1414/getEvents");
+          const { data } = await axios.get(ENV.API_URL + "/getEvents");
           console.log({ data })
           const card = AdaptiveCards.declare(eventList).render({ data });
           await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
           break;
         }
+
         case "getlatestevent": {
-          const { data } = await axios.get("http://localhost:1414/getLatestEvent");
+          const { data } = await axios.get(ENV.API_URL + "/getLatestEvent");
           console.log({ data })
           const card = AdaptiveCards.declare(eventDetail).render(data);
           await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
@@ -106,13 +113,41 @@ export class TeamsBot extends TeamsActivityHandler {
   ): Promise<AdaptiveCardInvokeResponse> {
     const text = context.activity.text
     console.log({ action: invokeValue.action.verb, data: invokeValue.action.data, replyToId: context.activity.replyToId })
+    if (invokeValue.action.verb === "participateIn") {
+      const id = invokeValue.action.data.id
+      const userName = context.activity.from.name
+      const url = ENV.API_URL + '/getEventbyId/' + id;
+      const { data } = await axios.get(url);
+
+      const participants = data.participants ?? "";
+      const participantsList = participants.split(",");
+      participantsList.push(userName);
+      const filteredParticipantsList = participantsList.filter(Boolean);
+      console.log({ data, userName, participantsList, filteredParticipantsList })
+
+      const putUrl = ENV.API_URL + '/updateEvents/' + id + "/" + filteredParticipantsList.join(",");
+      const { data: putData } = await axios.put(putUrl);
+      console.log({ putData, putUrl });
+
+      eventSubmit.body[1].text = "Thanks for participating";
+
+      const card = AdaptiveCards.declare<DataInterface>(eventSubmit).render();
+      await context.updateActivity({
+        type: "message",
+        id: context.activity.replyToId,
+        attachments: [CardFactory.adaptiveCard(card)],
+      });
+      return { statusCode: 200, type: undefined, value: undefined };
+
+
+    }
     if (invokeValue.action.verb === "getEventDetails") {
       console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
       console.log("invokeValue", JSON.stringify(invokeValue));
       console.log("context", JSON.stringify(context));
       console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       const id = invokeValue.action.data.id
-      const url = ENV.API_URL + '/getEvents/' + id;
+      const url = ENV.API_URL + '/getEventbyId/' + id;
       const { data } = await axios.get(url);
       console.log({ url, data });
       // const { msg } = data;
@@ -134,7 +169,7 @@ export class TeamsBot extends TeamsActivityHandler {
     // The verb "userlike" is sent from the Adaptive Card defined in adaptiveCards/learn.json
     if (invokeValue.action.verb === "eventSubmit") {
       // this.likeCountObj.likeCount++;
-      const url = ENV.API_URL + '/saveEvent';
+      const url = ENV.API_URL + '/saveEvents';
       const payload = invokeValue.action.data
       const { data } = await axios.post(url, payload);
       console.log({ url, payload, data });

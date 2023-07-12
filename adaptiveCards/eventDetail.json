@@ -89,5 +89,15 @@
       "height": "250px",
       "horizontalAlignment": "center"
     }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Participate",
+      "verb": "participateIn",
+      "data": {
+        "id": "${id}"
+      }
+    }
   ]
 }

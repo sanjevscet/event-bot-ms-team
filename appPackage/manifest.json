@@ -38,6 +38,11 @@
               "description": "Resend welcome card of this Bot"
             },
             {
+              "title": "about",
+              "description": "Get detail about my bot"
+            },
+
+            {
               "title": "learn",
               "description": "Learn about Adaptive Card and Bot Command"
             },
@@ -48,6 +53,10 @@
             {
               "title": "getEvents",
               "description": "Get list of all Events"
+            },
+            {
+              "title": "getLatestEvent",
+              "description": "Get latest event"
             }
           ]
         }

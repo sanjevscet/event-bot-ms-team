@@ -58,6 +58,14 @@ export class TeamsBot extends TeamsActivityHandler {
           await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
           break;
         }
+        case "getlatestevent": {
+          const { data } = await axios.get("http://localhost:1414/getLatestEvent");
+          console.log({ data })
+          const card = AdaptiveCards.declare(eventDetail).render(data);
+          await context.sendActivity({ attachments: [CardFactory.adaptiveCard(card)] });
+          break;
+        }
+
 
         case "learn": {
           this.likeCountObj.likeCount = 0;
@@ -139,7 +147,7 @@ export class TeamsBot extends TeamsActivityHandler {
         id: context.activity.replyToId,
         attachments: [CardFactory.adaptiveCard(card)],
       });
-      // return { statusCode: 200, type: undefined, value: undefined };
+      return { statusCode: 200, type: undefined, value: undefined };
     }
     if (invokeValue.action.verb === "userlike") {
       this.likeCountObj.likeCount++;

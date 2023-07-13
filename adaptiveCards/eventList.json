@@ -11,62 +11,62 @@
       "wrap": true
     },
     {
-      "$data": "${data}",
-      "type": "Container",
-      "items": [
+      "type": "ColumnSet",
+      "columns": [
         {
-          "type": "ColumnSet",
-          "columns": [
+          "type": "Column",
+          "width": "1",
+          "items": [
             {
-              "type": "Column",
-              "width": "1",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "Name",
-                  "weight": "Bolder",
-                  "wrap": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": "1",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "Location",
-                  "weight": "Bolder",
-                  "wrap": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": "1",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "Image",
-                  "weight": "Bolder",
-                  "wrap": true
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": "1",
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "",
-                  "weight": "Bolder",
-                  "wrap": true
-                }
-              ]
+              "type": "TextBlock",
+              "text": "Name",
+              "weight": "Bolder",
+              "wrap": true
             }
           ]
         },
+        {
+          "type": "Column",
+          "width": "1",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Location",
+              "weight": "Bolder",
+              "wrap": true
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "1",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Image",
+              "weight": "Bolder",
+              "wrap": true
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "1",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "",
+              "weight": "Bolder",
+              "wrap": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$data": "${data}",
+      "type": "Container",
+      "items": [
         {
           "$foreach": "${data}",
           "type": "Container",

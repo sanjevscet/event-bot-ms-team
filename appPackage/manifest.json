@@ -15,12 +15,12 @@
     "outline": "outline.png"
   },
   "name": {
-    "short": "MyBotA-${{TEAMSFX_ENV}}",
-    "full": "full name for MyBotA"
+    "short": "CommunityU",
+    "full": "full name for CommunityU"
   },
   "description": {
-    "short": "short description for MyBot",
-    "full": "full description for MyBot"
+    "short": "short description for CommunityU",
+    "full": "Full description for CommunityU"
   },
   "accentColor": "#FFFFFF",
   "bots": [
